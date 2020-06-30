@@ -1,6 +1,6 @@
 # assumptions: string has only upper case or lowercase letters (a - z)
 
-def string_compression(word):
+def string_compression_old(word):
 
     old_list = list(word)
     new_list = []
@@ -25,13 +25,38 @@ def string_compression(word):
     else:
         return "".join(new_list)
 
+
+def string_compression_new(word):
+
+    new_list = []
+    count = 0
+
+    for i in range(0, len(word)):
+        count += 1
+        if i + 1 >= len(word) or word[i + 1] != word[i]:
+            new_list.append(word[i])
+            new_list.append(str(count))
+            count = 0
+
+    if len(word) <= len(new_list):
+        return word
+    else:
+        return "".join(new_list)
+
+
 str1 = "aabcccccaaa"
 str2 = "aabcccccaab"
 str3 = "aabbccaa"
 str4 = "aabc"
 
 
-print(string_compression(str1))
-print(string_compression(str2))
-print(string_compression(str3))
-print(string_compression(str4))
+print(string_compression_old(str1))
+print(string_compression_old(str2))
+print(string_compression_old(str3))
+print(string_compression_old(str4))
+
+
+print(string_compression_new(str1))
+print(string_compression_new(str2))
+print(string_compression_new(str3))
+print(string_compression_new(str4))
